@@ -6,11 +6,12 @@ new Vue({
   },
   methods: {
     searchMovies: function() {
+      const self = this;
       axios
-        .get('https://api.themoviedb.org/3/search/movie?api_key=109b8dfeb232ae967f413b6c5604382e&query=' + this.userSearch)
+        .get('https://api.themoviedb.org/3/search/movie?api_key=109b8dfeb232ae967f413b6c5604382e&query=' + self.userSearch)
         .then(function(resp) {
-          this.movies = resp.data.results;
-          console.log(this.movies);
+          self.movies = resp.data.results;
+          console.log(self.movies);
         })
     }
   }
