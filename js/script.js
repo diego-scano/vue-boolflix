@@ -11,7 +11,6 @@ new Vue({
         .get('https://api.themoviedb.org/3/search/movie?api_key=109b8dfeb232ae967f413b6c5604382e&query=' + self.userSearch)
         .then(function(resp) {
           self.movies = resp.data.results;
-          console.log(self.movies);
         })
     }
   }
