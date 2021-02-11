@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -20,19 +22,23 @@
       </div>
       <div class="movies-container">
         <div class="movie" v-for="item in all">
-          <img class="poster" v-if="item.backdrop_path, imageActive"  @mouseover="mouseover" @mouseleave="mouseleave" :src="'https://image.tmdb.org/t/p/w400' + item.backdrop_path" alt="">
-          <div class="description" v-if="descriptionActive"  @mouseover="mouseover" @mouseleave="mouseleave">
-            <h3 v-if="item.title">{{item.title}}</h3>
-            <h3 v-if="item.name">{{item.name}}</h3>
-            <h4 v-if="item.original_title">{{item.original_title}}</h4>
-            <h4 v-if="item.original_name">{{item.original_name}}</h4>
+          <div class="image">
+            <img class="poster" v-if="item.backdrop_path" :src="'https://image.tmdb.org/t/p/w400' + item.backdrop_path" alt="">
+            <img class="poster" v-else src="img/default-img.jpg">
+          </div>
+          <div class="description">
+            <h3 v-if="item.title">Title: {{item.title}}</h3>
+            <h3 v-if="item.name">Title: {{item.name}}</h3>
+            <h4 v-if="item.original_title">Original title: {{item.original_title}}</h4>
+            <h4 v-if="item.original_name">Original title: {{item.original_name}}</h4>
             <img class="flag" v-if="languageFlags.includes(item.original_language)" :src="'img/flags/' + item.original_language + '.gif'">
             <span v-else>{{item.original_language}}</span>
             <div class="rating">
+              <span><strong>Rating: </strong></span>
               <i class="fa fa-star" v-for="index in getVote(item.vote_average)"></i>
               <i class="fa fa-star-o" v-for="index in (5 - getVote(item.vote_average))"></i>
             </div>
-            <p>{{item.overview}}</p>
+            <p><strong>Overview:</strong><br>{{item.overview}}</p>
           </div>
         </div>
       </div>
