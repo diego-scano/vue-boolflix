@@ -11,26 +11,25 @@
   <body>
 
     <div id="root">
-      <h1>Boolflix</h1>
+      <div id="logo">
+        <img src="img/logo.png" alt="logo">
+      </div>
       <div class="search">
         <input v-model="userSearch" @keyup.enter="search" placeholder="Search movie">
         <button @click="search">Search</button>
       </div>
       <div class="movies-container">
         <div class="movie" v-for="item in all">
-          <ul>
-            <li v-if="all.title">{{all.title}}</li>
-            <li v-if="all.name">{{all.name}}</li>
-            <li v-if="all.original_title">{{all.original_title}}</li>
-            <li v-if="all.original_name">{{all.original_name}}</li>
-            <li>{{all.original_language}}</li>
-            <li>
-              <span>
-                <i class="fa fa-star" v-for="index in getVote(all.vote_average)"></i>
-                <i class="fa fa-star-o" v-for="index in (5 - getVote(all.vote_average))"></i>
-              </span>
-            </li>
-          </ul>
+          <h3 v-if="item.title">{{item.title}}</h3>
+          <h3 v-if="item.name">{{item.name}}</h3>
+          <h4 v-if="item.original_title">{{item.original_title}}</h4>
+          <h4 v-if="item.original_name">{{item.original_name}}</h4>
+          <img class="flag" v-if="languageFlags.includes(item.original_language)" :src="'img/flags/'+item.original_language+'.gif'">
+          <span v-else>{{item.original_language}}</span>
+          <div class="rating">
+            <i class="fa fa-star" v-for="index in getVote(item.vote_average)"></i>
+            <i class="fa fa-star-o" v-for="index in (5 - getVote(item.vote_average))"></i>
+          </div>
         </div>
       </div>
     </div>

@@ -4,7 +4,8 @@ new Vue({
     userSearch: '',
     all: [],
     movies: [],
-    tvShows: []
+    tvShows: [],
+    languageFlags: ['en', 'it', 'de', 'sv', 'es', 'ja', 'hr', 'fr', 'pt']
   },
   methods: {
     searchMovies: function() {
@@ -29,7 +30,6 @@ new Vue({
       this.all = [];
       this.searchMovies();
       this.searchTvShows();
-      console.log(this.all);
     },
     getVote: function(vote) {
       return parseInt(vote / 2);

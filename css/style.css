@@ -4,8 +4,9 @@
   padding: 0;
 }
 
-h1 {
-  text-align: center;
+#logo {
+  display: flex;
+  justify-content: center;
   padding: 30px 0;
 }
 
@@ -32,10 +33,10 @@ h1 {
   background-color: lightgrey;
 }
 
-.empty {
-  color: grey;
+.rating {
+  display: flex;
 }
 
-.full {
-  color: black;
+.flag {
+  width: 50px;
 }
