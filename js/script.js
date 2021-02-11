@@ -5,8 +5,7 @@ new Vue({
     all: [],
     movies: [],
     tvShows: [],
-    languageFlags: ['en', 'it', 'de', 'sv', 'es', 'ja', 'hr', 'fr', 'pt'],
-    autoFlags: []
+    languageFlags: ['en', 'it', 'de', 'sv', 'es', 'ja', 'hr', 'fr', 'pt']
   },
   methods: {
     searchMovies: function() {
