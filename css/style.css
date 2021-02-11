@@ -25,12 +25,17 @@
 }
 
 .movie {
-  width: 200px;
-  height: 300px;
+  width: 400px;
+  height: 250px;
   margin: 20px;
-  padding: 30px;
   border: 1px solid black;
   background-color: lightgrey;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .rating {

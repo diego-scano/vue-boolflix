@@ -5,7 +5,9 @@ new Vue({
     all: [],
     movies: [],
     tvShows: [],
-    languageFlags: ['en', 'it', 'de', 'sv', 'es', 'ja', 'hr', 'fr', 'pt']
+    languageFlags: ['en', 'it', 'de', 'sv', 'es', 'ja', 'hr', 'fr', 'pt'],
+    descriptionActive: false,
+    imageActive: true
   },
   methods: {
     searchMovies: function() {
@@ -33,6 +35,14 @@ new Vue({
     },
     getVote: function(vote) {
       return parseInt(vote / 2);
+    },
+    mouseover: function() {
+      this.imageActive = false;
+      this.descriptionActive = true;
+    },
+    mouseleave: function() {
+      this.descriptionActive = false;
+      this.imageActive = true;
     }
   }
 })

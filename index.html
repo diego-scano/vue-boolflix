@@ -20,15 +20,19 @@
       </div>
       <div class="movies-container">
         <div class="movie" v-for="item in all">
-          <h3 v-if="item.title">{{item.title}}</h3>
-          <h3 v-if="item.name">{{item.name}}</h3>
-          <h4 v-if="item.original_title">{{item.original_title}}</h4>
-          <h4 v-if="item.original_name">{{item.original_name}}</h4>
-          <img class="flag" v-if="languageFlags.includes(item.original_language)" :src="'img/flags/'+item.original_language+'.gif'">
-          <span v-else>{{item.original_language}}</span>
-          <div class="rating">
-            <i class="fa fa-star" v-for="index in getVote(item.vote_average)"></i>
-            <i class="fa fa-star-o" v-for="index in (5 - getVote(item.vote_average))"></i>
+          <img class="poster" v-if="item.backdrop_path, imageActive"  @mouseover="mouseover" @mouseleave="mouseleave" :src="'https://image.tmdb.org/t/p/w400' + item.backdrop_path" alt="">
+          <div class="description" v-if="descriptionActive"  @mouseover="mouseover" @mouseleave="mouseleave">
+            <h3 v-if="item.title">{{item.title}}</h3>
+            <h3 v-if="item.name">{{item.name}}</h3>
+            <h4 v-if="item.original_title">{{item.original_title}}</h4>
+            <h4 v-if="item.original_name">{{item.original_name}}</h4>
+            <img class="flag" v-if="languageFlags.includes(item.original_language)" :src="'img/flags/' + item.original_language + '.gif'">
+            <span v-else>{{item.original_language}}</span>
+            <div class="rating">
+              <i class="fa fa-star" v-for="index in getVote(item.vote_average)"></i>
+              <i class="fa fa-star-o" v-for="index in (5 - getVote(item.vote_average))"></i>
+            </div>
+            <p>{{item.overview}}</p>
           </div>
         </div>
       </div>
