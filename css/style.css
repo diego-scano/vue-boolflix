@@ -108,6 +108,7 @@ header select {
 
 #cast-button {
   margin: 10px 0 5px 0;
+  cursor: alias;
 }
 
 #cast-list {
