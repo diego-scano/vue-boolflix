@@ -5,7 +5,10 @@ new Vue({
     all: [],
     movies: [],
     tvShows: [],
-    languageFlags: ['en', 'it', 'de', 'sv', 'es', 'ja', 'hr', 'fr', 'pt']
+    languageFlags: ['en', 'it', 'de', 'sv', 'es', 'ja', 'hr', 'fr', 'pt'],
+    cast: [],
+    genres: [],
+    buttonName : 'Show Cast'
   },
   methods: {
     searchMovies: function() {
@@ -33,7 +36,43 @@ new Vue({
     },
     getVote: function(vote) {
       return parseInt(vote / 2);
+    },
+    getGenres: function() {
+      const self = this;
+      axios
+        .get('https://api.themoviedb.org/3/genre/movie/list?api_key=109b8dfeb232ae967f413b6c5604382e')
+        .then(function(resp) {
+          self.genres = resp.data.genres;
+        })
+    },
+    getCast: function(id) {
+      const self = this;
+      axios
+        .get('https://api.themoviedb.org/3/movie/'+ id +'/credits?api_key=109b8dfeb232ae967f413b6c5604382e&language=en-US')
+        .then(function(resp) {
+          if(self.cast.length === 0) {
+            for(x = 0; x < 5; x++) {
+              self.cast.push(resp.data.cast[x].name);
+            }
+            self.buttonName = 'Hide Cast';
+          } else {
+            self.cast = [];
+            self.buttonName = 'Show Cast';
+          }
+        })
+    },
+    resetArray: function() {
+      this.cast = [];
+      this.buttonName = 'Show Cast';
     }
+  },
+  mounted() {
+    const self = this;
+    axios
+      .get('https://api.themoviedb.org/3/genre/movie/list?api_key=109b8dfeb232ae967f413b6c5604382e')
+      .then(function(resp) {
+        self.genres = resp.data.genres;
+      })
   }
 })
 

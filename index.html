@@ -14,25 +14,27 @@
 
     <div id="root">
 
-      <div id="logo">
-        <img src="img/logo.png" alt="logo">
-      </div>
+      <header>
 
-      <div class="search">
-        <input v-model="userSearch" @keyup.enter="search" placeholder="Search movie">
-        <button @click="search">Search</button>
-      </div>
+        <img id="logo" src="img/logo.png" alt="logo">
+
+        <div class="search">
+          <input v-model="userSearch" @keyup.enter="search" placeholder="Search movie">
+          <i class="fa fa-search" @click="search"></i>
+        </div>
+
+      </header>
 
       <div class="movies-container">
 
         <div class="movie" v-for="item in all">
 
           <div class="image">
-            <img class="poster" v-if="item.backdrop_path" :src="'https://image.tmdb.org/t/p/w400' + item.backdrop_path" alt="">
-            <img class="poster" v-else src="img/default-img.jpg">
+            <img class="poster" v-if="item.poster_path" :src="'https://image.tmdb.org/t/p/w185' + item.poster_path" alt="">
+            <img class="poster" v-else src="https://www.altavod.com/assets/images/poster-placeholder.png">
           </div>
 
-          <div class="description">
+          <div class="description" @mouseleave="resetArray()">
             <h3 v-if="item.title">Title: {{item.title}}</h3>
             <h3 v-if="item.name">Title: {{item.name}}</h3>
             <h4 v-if="item.original_title">Original title: {{item.original_title}}</h4>
@@ -45,6 +47,16 @@
               <i class="fa fa-star-o" v-for="item in (5 - getVote(item.vote_average))"></i>
             </div>
             <p><strong>Overview:</strong><br>{{item.overview}}</p>
+            <div class="genres">
+              <span @click="getGenres"><strong>Genres: </strong></span>
+              <ul id="genres-list">
+                <li v-for="genre in genres" v-if="item.genre_ids.includes(genre.id)">{{genre.name}}</li>
+              </ul>
+            </div>
+            <button id="cast-button" @click="getCast(item.id)">{{buttonName}}</button>
+            <ul id="cast-list">
+              <li v-for="item in cast"><i class="fa fa-angle-right" aria-hidden="true"></i>{{item}}</li>
+            </ul>
           </div>
         </div>
       </div>
