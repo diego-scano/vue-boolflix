@@ -18,6 +18,12 @@
 
         <img id="logo" src="img/logo.png" alt="logo">
 
+        <select v-model="selected">
+          <option disabled value="">Filter by Genre</option>
+          <option>All</option>
+          <option v-for="item in genres">{{item.name}}</option>
+        </select>
+
         <div class="search">
           <input v-model="userSearch" @keyup.enter="search" placeholder="Search movie">
           <i class="fa fa-search" @click="search"></i>
@@ -27,7 +33,7 @@
 
       <div class="movies-container">
 
-        <div class="movie" v-for="item in all">
+        <div class="movie" v-for="item in all" v-if="filterByGenre()">
 
           <div class="image">
             <img class="poster" v-if="item.poster_path" :src="'https://image.tmdb.org/t/p/w185' + item.poster_path" alt="">

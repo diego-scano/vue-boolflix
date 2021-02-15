@@ -8,7 +8,8 @@ new Vue({
     languageFlags: ['en', 'it', 'de', 'sv', 'es', 'ja', 'hr', 'fr', 'pt'],
     cast: [],
     genres: [],
-    buttonName : 'Show Cast'
+    buttonName : 'Show Cast',
+    selected: ''
   },
   methods: {
     searchMovies: function() {
@@ -64,6 +65,14 @@ new Vue({
     resetArray: function() {
       this.cast = [];
       this.buttonName = 'Show Cast';
+    },
+    filterByGenre: function() {
+      if(this.selected === '' || this.selected === 'All') {
+        return true;
+      } 
+      if(!this.genres.includes(this.selected)) {
+        return false;
+      }
     }
   },
   mounted() {
