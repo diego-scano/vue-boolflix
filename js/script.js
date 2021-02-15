@@ -66,11 +66,10 @@ new Vue({
       this.cast = [];
       this.buttonName = 'Show Cast';
     },
-    filterByGenre: function() {
-      if(this.selected === '' || this.selected === 'All') {
+    filterByGenre: function(id) {
+      if(this.selected === '' || this.selected === 'All' || id.includes(this.selected)) {
         return true;
-      } 
-      if(!this.genres.includes(this.selected)) {
+      } else {
         return false;
       }
     }

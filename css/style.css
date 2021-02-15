@@ -39,6 +39,7 @@ header {
   border-radius: 10px;
   font-size: 1.3em;
   margin: 0 5px;
+  width: 250px;
 }
 
 .movies-container {

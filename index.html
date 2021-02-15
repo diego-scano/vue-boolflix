@@ -21,11 +21,11 @@
         <select v-model="selected">
           <option disabled value="">Filter by Genre</option>
           <option>All</option>
-          <option v-for="item in genres">{{item.name}}</option>
+          <option v-for="item in genres" :value="item.id">{{item.name}}</option>
         </select>
 
         <div class="search">
-          <input v-model="userSearch" @keyup.enter="search" placeholder="Search movie">
+          <input v-model="userSearch" @keyup.enter="search" placeholder="Search movie or TV series">
           <i class="fa fa-search" @click="search"></i>
         </div>
 
@@ -33,7 +33,7 @@
 
       <div class="movies-container">
 
-        <div class="movie" v-for="item in all" v-if="filterByGenre()">
+        <div class="movie" v-for="item in all" v-if="filterByGenre(item.genre_ids)">
 
           <div class="image">
             <img class="poster" v-if="item.poster_path" :src="'https://image.tmdb.org/t/p/w185' + item.poster_path" alt="">
